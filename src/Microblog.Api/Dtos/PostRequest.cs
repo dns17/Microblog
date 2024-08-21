@@ -1,3 +1,3 @@
 namespace Microblog.Api.Dtos;
 
-public record PostRequest();
+public record PostRequest(string Titulo, string Conteudo);
