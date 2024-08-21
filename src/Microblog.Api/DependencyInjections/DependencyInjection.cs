@@ -1,3 +1,4 @@
+using Microblog.Api.Abstracts;
 using Microblog.Api.Interfaces;
 using Microblog.Api.Services;
 
@@ -10,6 +11,9 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services.AddPersistence(configuration);
+
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
 
         services.AddScoped<IPostService, PostService>();
 
