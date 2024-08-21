@@ -1,4 +1,5 @@
 using Microblog.Api.Dtos;
+using Microblog.Api.Filters;
 using Microblog.Api.Interfaces;
 
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -11,11 +12,27 @@ public static class PostEndpoint
     {
         var postGroup = routes.MapGroup("/api/posts");
 
-        postGroup.MapPost("/", Post);
-        postGroup.MapPut("/{id:int}", Put);
-        postGroup.MapDelete("/{id:int}", Delete);
-        postGroup.MapGet("/{id:int}", GetById);
-        postGroup.MapGet("/", GetList);
+        postGroup
+            .MapPost("/", Post)
+            .WithSummary("Criar um novo Post.")
+            .AddEndpointFilter<ValidationFilter<PostRequest>>();
+
+        postGroup
+            .MapPut("/{id:int}", Put)
+            .WithSummary("Atualizar o Post.")
+            .AddEndpointFilter<ValidationFilter<PostRequest>>();
+
+        postGroup
+            .MapDelete("/{id:int}", Delete)
+            .WithSummary("Deletar o Post.");
+
+        postGroup
+            .MapGet("/{id:int}", GetById)
+            .WithSummary("Obter um Post via Id.");
+
+        postGroup
+            .MapGet("/", GetList)
+            .WithSummary("Obter a lista de Posts.");
     }
 
     static async Task<Ok<int>> Post(
