@@ -50,7 +50,7 @@ public class PostService(AppDbContext context) : IPostService
         return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<PostResponse> GetById(int id)
+    public async Task<PostResponse> GetByIdAsync(int id)
     {
         await Task.CompletedTask;
         var post = _context.Posts.FirstOrDefault(x => x.Id == id);
@@ -72,7 +72,7 @@ public class PostService(AppDbContext context) : IPostService
         return await
             _context.Posts
                 .Select(x => new PostResponse(x.Id, x.Titulo, x.Conteudo, x.DataCriacao, x.DataAtualizacao))
-                .ToListAsync()
+                .ToListAsync();
     }
 
 }

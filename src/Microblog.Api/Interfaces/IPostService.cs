@@ -7,6 +7,6 @@ public interface IPostService
     Task<int> CreateAsync(PostRequest request);
     Task UpdateAsync(int id, PostRequest request);
     Task<bool> DeleteAsync(int id);
-    Task<PostResponse> GetById(int id);
+    Task<PostResponse> GetByIdAsync(int id);
     Task<IReadOnlyList<PostResponse>> GetListAsync();
 }
