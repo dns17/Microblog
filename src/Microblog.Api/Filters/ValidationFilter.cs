@@ -22,3 +22,10 @@ public class ValidationFilter<TRequest>(IValidator<TRequest> validator) : IEndpo
         return await next(context);
     }
 }
+
+public static class ValidationExtension
+{
+    public static RouteHandlerBuilder WithRequestValidation<TRequest>(this RouteHandlerBuilder builder) =>
+        builder.AddEndpointFilter<ValidationFilter<TRequest>>()
+            .ProducesValidationProblem();
+}

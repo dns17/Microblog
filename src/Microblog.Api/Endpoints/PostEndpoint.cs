@@ -10,17 +10,19 @@ public static class PostEndpoint
 {
     public static void RegisterPostEndpoint(this IEndpointRouteBuilder routes)
     {
-        var postGroup = routes.MapGroup("/api/posts");
+        var postGroup = routes
+            .MapGroup("/api/posts")
+            .WithOpenApi();
 
         postGroup
             .MapPost("/", Post)
             .WithSummary("Criar um novo Post.")
-            .AddEndpointFilter<ValidationFilter<PostRequest>>();
+            .WithRequestValidation<PostRequest>();
 
         postGroup
             .MapPut("/{id:int}", Put)
             .WithSummary("Atualizar o Post.")
-            .AddEndpointFilter<ValidationFilter<PostRequest>>();
+            .WithRequestValidation<PostRequest>();
 
         postGroup
             .MapDelete("/{id:int}", Delete)
