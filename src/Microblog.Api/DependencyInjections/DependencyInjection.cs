@@ -16,6 +16,8 @@ public static class DependencyInjection
         services.AddProblemDetails();
 
         services.AddScoped<IPostService, PostService>();
+        services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
 
         return services;
     }

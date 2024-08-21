@@ -1,4 +1,5 @@
 using Microblog.Api.Persistences.Contexts;
+using Microblog.Api.Persistences.Interceptions;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -13,10 +14,14 @@ public static class PersistenceServiceCollection
 
         var connectionString = configuration.GetConnectionString("BloggingContext") ?? throw new InvalidOperationException();
 
-        services.AddDbContext<AppDbContext>(options =>
+        services.AddDbContext<AppDbContext>((sp, options) =>
         {
-            options.UseNpgsql(connectionString);
+            options
+                .UseNpgsql(connectionString)
+                .AddInterceptors(sp.GetRequiredService<AuditableInterception>());
         });
+
+        services.AddScoped<AuditableInterception>();
 
         return services;
     }
