@@ -5,7 +5,7 @@ Esta API oferece funcionalidades básicas para um blog minimalista, permitindo a
 
 ## 2. Instruções para Executar no Docker Compose
 
-Para facilitar a configuração e execução da API, fornecemos um arquivo `docker-compose.yml`. Siga as instruções abaixo para executar a API em um ambiente Docker:
+Para facilitar a configuração e execução da API, eu disponibilizo um arquivo `docker-compose.yml`. Siga as instruções abaixo para executar a API em um ambiente Docker:
 
 ### Passos:
 1. **Clone o repositório**:
@@ -27,7 +27,7 @@ Para facilitar a configuração e execução da API, fornecemos um arquivo `dock
    ```
 
 4. **Acesse a API**:
-   Após o Docker Compose finalizar a configuração, a API estará disponível em `http://localhost:5001/swagger`.
+   Após o Docker Compose finalizar a configuração, a API estará disponível em `http://localhost:8000`.
 
 5. **Parar os containers**:
    Para parar e remover os containers, use o comando:
