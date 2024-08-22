@@ -2,7 +2,10 @@ using FluentValidation;
 
 using Microblog.Api.Abstracts;
 using Microblog.Api.Interfaces;
+using Microblog.Api.Security;
 using Microblog.Api.Services;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Microblog.Api.DependencyInjections;
 
@@ -35,6 +38,22 @@ public static class DependencyInjection
     private static IServiceCollection AddValidations(this IServiceCollection services)
     {
         services.AddValidatorsFromAssemblyContaining<Program>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddAuthentication(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
+
+        services.AddSingleton<TokenGenerator>();
+
+        services
+            .ConfigureOptions<JwtTokenValidationConfiguration>()
+            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer();
 
         return services;
     }

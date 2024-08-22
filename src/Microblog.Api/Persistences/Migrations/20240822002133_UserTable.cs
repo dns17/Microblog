@@ -1,7 +1,4 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore.Migrations;
-
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -9,33 +6,37 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Microblog.Api.Persistences.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class UserTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Posts",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Titulo = table.Column<string>(type: "text", nullable: false),
-                    Conteudo = table.Column<string>(type: "text", nullable: false),
-                    DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DataAtualizacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    UserName = table.Column<string>(type: "text", nullable: false),
+                    Senha = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "Users");
         }
     }
 }
