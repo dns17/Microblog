@@ -10,8 +10,8 @@ Para facilitar a configuração e execução da API, eu disponibilizo um arquivo
 ### Passos:
 1. **Clone o repositório**:
    ```bash
-   git clone https://github.com/seu-usuario/blog-minimalista.git
-   cd blog-minimalista
+   https://github.com/dnslowlavelcode/Microblog.git
+   cd Microblog
    ```
 
 2. **Construa as imagens Docker**:
