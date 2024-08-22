@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace Microblog.Api.Persistences.Interceptions;
+namespace Microblog.Api.Persistence.Interceptions;
 
 public sealed class AuditableInterception(IDateTimeProvider dateTimeProvider) : SaveChangesInterceptor
 {

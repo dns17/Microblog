@@ -2,7 +2,7 @@ using Microblog.Api.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace Microblog.Api.Persistences.Contexts;
+namespace Microblog.Api.Persistence.Contexts;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {

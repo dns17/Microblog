@@ -2,7 +2,7 @@ using Microblog.Api.Dtos;
 using Microblog.Api.Entities;
 using Microblog.Api.Exceptions;
 using Microblog.Api.Interfaces;
-using Microblog.Api.Persistences.Contexts;
+using Microblog.Api.Persistence.Contexts;
 
 using Microsoft.EntityFrameworkCore;
 

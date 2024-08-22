@@ -20,5 +20,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.RegisterPostEndpoint();
+app.RegisterUserEndpoint();
 app.UseExceptionHandler();
 app.Run();

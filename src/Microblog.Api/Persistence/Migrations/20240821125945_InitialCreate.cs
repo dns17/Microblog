@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Microblog.Api.Persistences.Migrations
+namespace Microblog.Api.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

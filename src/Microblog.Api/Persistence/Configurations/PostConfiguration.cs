@@ -3,7 +3,7 @@ using Microblog.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Microblog.Api.Persistences.Configurations;
+namespace Microblog.Api.Persistence.Configurations;
 
 public class PostConfiguration : IEntityTypeConfiguration<Post>
 {
