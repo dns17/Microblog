@@ -12,7 +12,8 @@ public static class PostEndpoint
     {
         var postGroup = routes
             .MapGroup("/api/posts")
-            .WithOpenApi();
+            .WithOpenApi()
+            .RequireAuthorization();
 
         postGroup
             .MapPost("/", Post)

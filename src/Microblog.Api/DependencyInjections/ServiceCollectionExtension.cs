@@ -10,6 +10,7 @@ using Microblog.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
 
 namespace Microblog.Api.DependencyInjections;
 
@@ -27,6 +28,8 @@ public static class ServiceCollectionExtension
         services.AddServices();
         services.AddValidations();
         services.AddAuthentication(configuration);
+
+        services.AddSwaggerService();
 
         return services;
     }
@@ -63,6 +66,9 @@ public static class ServiceCollectionExtension
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer();
 
+        services
+            .AddAuthorization();
+
         return services;
     }
 
@@ -81,6 +87,39 @@ public static class ServiceCollectionExtension
         });
 
         services.AddScoped<AuditableInterception>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddSwaggerService(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(setup =>
+        {
+            // Include 'SecurityScheme' to use JWT Authentication
+            var jwtSecurityScheme = new OpenApiSecurityScheme
+            {
+                BearerFormat = "JWT",
+                Name = "JWT Authentication",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = JwtBearerDefaults.AuthenticationScheme,
+                Description = "Coloque **_SOMENTE_** seu token JWT Bearer no campo de texto abaixo.",
+
+                Reference = new OpenApiReference
+                {
+                    Id = JwtBearerDefaults.AuthenticationScheme,
+                    Type = ReferenceType.SecurityScheme
+                }
+            };
+
+            setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+            setup.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                { jwtSecurityScheme, Array.Empty<string>() }
+            });
+
+        });
 
         return services;
     }
