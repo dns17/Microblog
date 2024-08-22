@@ -10,7 +10,7 @@ Para facilitar a configuração e execução da API, eu disponibilizo um arquivo
 ### Passos:
 1. **Clone o repositório**:
    ```bash
-   https://github.com/dnslowlavelcode/Microblog.git
+   git clone https://github.com/dnslowlavelcode/Microblog.git
    cd Microblog
    ```
 
@@ -27,12 +27,12 @@ Para facilitar a configuração e execução da API, eu disponibilizo um arquivo
    ```
 
 4. **Acesse a API**:
-   Após o Docker Compose finalizar a configuração, a API estará disponível em `http://localhost:8000`.
+   Após o Docker Compose finalizar a configuração, a API estará disponível em `http://localhost:5001/swagger`.
 
 5. **Parar os containers**:
    Para parar e remover os containers, use o comando:
    ```bash
-   docker-compose down
+   docker-compose down -v
    ```
 
 Com esses passos, a API do blog minimalista estará rodando em um ambiente isolado, pronta para uso.
