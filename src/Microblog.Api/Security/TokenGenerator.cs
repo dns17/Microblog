@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Text;
 
 using Microblog.Api.Abstracts;
-using Microblog.Api.Dtos;
 
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

@@ -1,5 +1,3 @@
-using System.Net;
-
 using Microblog.Api.Dtos;
 using Microblog.Api.Filters;
 using Microblog.Api.Interfaces;

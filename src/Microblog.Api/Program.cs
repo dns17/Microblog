@@ -1,9 +1,6 @@
 using Microblog.Api.DependencyInjections;
 using Microblog.Api.Endpoints;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.OpenApi.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

@@ -1,0 +1,42 @@
+version: '3.9'
+
+networks:
+  microblog-net:
+    driver: bridge
+
+volumes:
+  app_database: {}
+
+services:
+  api:
+    container_name: microblog
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVORONMET=Production
+      - ConnectionStrings__BloggingContext=User ID=postgres;Password=postgres;Host=api_database;Port=5432;Database=microblogdb
+    restart: on-failure
+    networks:
+      - microblog-net
+    depends_on:
+      - "api_database"
+
+  api_database:
+    image: postgres:latest
+    container_name: api_database
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=microblogdb
+      - PGPORT=5432
+    ports:
+      - "5500:5432"
+    expose:
+      - "5500"
+    networks:
+      - microblog-net
+    volumes:
+      - "app_database:/var/lib/postgresql/data"
